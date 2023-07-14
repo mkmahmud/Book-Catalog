@@ -9,7 +9,7 @@ const SignUp = () => {
       </div>
       <div className="w-full md:w-2/6">
         <div>
-          <h2 className="text-[#FF630B] text-[30px] font-semibold">Sign Up</h2>
+          <h2 className="text-mainBackground text-[30px] font-semibold">Sign Up</h2>
           <p className="text-[#4F4F4F]">
             Create your own universe of your own Books collection
           </p>
@@ -47,7 +47,7 @@ const SignUp = () => {
                 <p>must be at least 8 characters.</p>
               </div>
 
-              <button className="bg-[#FF630B] w-full  text-white py-2 px-4 rounded-md">
+              <button className="bg-mainBackground w-full  text-white py-2 px-4 rounded-md">
                 Create Account
               </button>
             </form>
@@ -58,7 +58,7 @@ const SignUp = () => {
               <hr className="flex-grow border border-gray-300" />
             </div>
 
-            <button className="border border-[#FF630B] w-full  text-black py-2 px-4 rounded-md flex justify-center">
+            <button className="border border-mainBackground w-full  text-black py-2 px-4 rounded-md flex justify-center">
               <img src={google} alt="" /> sign up with google
             </button>
           </div>

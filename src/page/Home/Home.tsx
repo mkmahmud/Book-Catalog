@@ -11,14 +11,14 @@ const Home = () => {
     <div>
       <div className="md:flex justify-around items-center my-40 ">
         <div className="w-full md: mx-10">
-          <p className="text-[#626262] font-semibold">
+          <p className="text-mainText font-semibold">
             Let’s make the best investments
           </p>
-          <h2 className="text-[#626262] font-bold text-[40px]">
-            The <span className="text-[#FF630B]">Chyra </span>
+          <h2 className="text-mainText font-bold text-[40px]">
+            The <span className="text-mainBackground">Chyra </span>
             <br /> eBook Library
           </h2>
-          <p className="#626262">
+          <p className="text-mainText">
             Browse from the largest collection of ebooks <br /> Read stories
             from anywhere, at anytime.
           </p>
@@ -28,7 +28,7 @@ const Home = () => {
               placeholder="Search by book title, author name"
               className="py-2 px-4 rounded-l-md focus:outline-none focus:ring-0 w-full "
             />
-            <button className="bg-[#FF630B]  text-white py-2 px-4 rounded-md">
+            <button className="bg-mainBackground  text-white py-2 px-4 rounded-md">
               Search
             </button>
           </div>
@@ -49,10 +49,10 @@ const Home = () => {
 
       <div>
         <div className="flex justify-between items-center ">
-          <h1 className="text-[40px] text-[#FF630B] font-semibold my-10">
+          <h1 className="text-[40px] text-mainBackground font-semibold my-10">
             Genre
           </h1>
-          <Link className="text-[#FF630B]" to="/">see all</Link>
+          <Link className="text-mainBackground" to="/">see all</Link>
         </div>
         <div className="md:flex justify-center">
           <GenreCard route="/" img={horor} text="Horor"></GenreCard>

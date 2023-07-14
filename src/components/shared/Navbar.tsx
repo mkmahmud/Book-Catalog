@@ -18,27 +18,27 @@ const Navbar = () => {
           </div>
           <div className="ml-auto hidden md:block">
             <div className="md:flex items-center space-x-4">
-              <ul className="flex">
+              <ul className="flex ">
                 <li className="text-gray-300 text-[#FF630B] px-3 py-2 rounded-md text-sm font-semibold">
-                  <Link to="/">Home</Link>
+                  <Link className="text-black" to="/">Home</Link>
                 </li>
                 <li className="text-gray-300 text-black px-3 py-2 rounded-md text-sm font-semibold">
-                  <Link to="/about" className="hover:text-[#FF630B]">
+                  <Link to="/about" className="hover:text-[#FF630B] text-black">
                     About
                   </Link>
                 </li>
                 <li className="text-gray-300 text-black px-3 py-2 rounded-md text-sm font-semibold">
-                  <Link to="/all-books" className="hover:text-[#FF630B]">
+                  <Link to="/all-books" className="hover:text-[#FF630B] text-black">
                     All Books 
                   </Link>
                 </li>
                 <li className="text-gray-300 text-black px-3 py-2 rounded-md text-sm font-semibold">
-                  <Link to="/catalog" className="hover:text-[#FF630B]">
+                  <Link to="/catalog" className="hover:text-[#FF630B]  text-black">
                     Library catalog
                   </Link>
                 </li>
                 <li className="text-gray-300 text-black px-3 py-2 rounded-md text-sm font-semibold">
-                  <Link to="/contact" className="hover:text-[#FF630B]">
+                  <Link to="/contact" className="hover:text-[#FF630B] text-black">
                     Contact Us
                   </Link>
                 </li>

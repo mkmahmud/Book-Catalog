@@ -6,7 +6,7 @@ const Login = () => {
     <div className="md:flex items-center p-5 justify-between">
       <div className="w-full md:w-2/6">
         <div>
-          <h2 className="text-[#FF630B] text-[30px] font-semibold">Log In</h2>
+          <h2 className="text-mainBackground text-[30px] font-semibold">Log In</h2>
           <p className="text-[#4F4F4F]">Welcome back to Chyra Library</p>
           <div>
             <form>
@@ -33,7 +33,7 @@ const Login = () => {
                 <p>must be at least 8 characters.</p>
               </div>
 
-              <button className="bg-[#FF630B] w-full  text-white py-2 px-4 rounded-md">
+              <button className="bg-mainBackground w-full  text-white py-2 px-4 rounded-md">
                 Log In
               </button>
             </form>
@@ -44,7 +44,7 @@ const Login = () => {
               <hr className="flex-grow border border-gray-300" />
             </div>
 
-            <button className="border border-[#FF630B] w-full  text-black py-2 px-4 rounded-md flex justify-center">
+            <button className="border border-mainBackground w-full  text-black py-2 px-4 rounded-md flex justify-center">
               <img src={google} alt="" /> Log in with google
             </button>
           </div>
