@@ -28,6 +28,11 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="text-gray-300 text-black px-3 py-2 rounded-md text-sm font-semibold">
+                  <Link to="/all-books" className="hover:text-[#FF630B]">
+                    All Books 
+                  </Link>
+                </li>
+                <li className="text-gray-300 text-black px-3 py-2 rounded-md text-sm font-semibold">
                   <Link to="/catalog" className="hover:text-[#FF630B]">
                     Library catalog
                   </Link>
