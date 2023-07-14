@@ -1,6 +1,13 @@
-import { Link, To } from "react-router-dom";
+import { Link, } from "react-router-dom";
 
-const GenreCard = ({route, img, text}) => {
+
+interface IRoute {
+    route: string
+    img: string
+    text: string
+}
+
+const GenreCard = ({route, img, text}: IRoute) => {
   return <Link to={route}>
     <div className="h-[300px] w-[250px] flex items-center justify-center relative mx-auto">
         <img src={img} className="" alt="" />

@@ -1,9 +1,10 @@
 import hreoImage from "../../assets/hero.png";
-import horor from '../../assets/genre/horor.png'
+import horor from "../../assets/genre/horor.png";
 import GenreCard from "../../components/genreCard/GenreCard";
-import romatic from "../../assets/genre/romantic.png"
-import tech from "../../assets/genre/tech.png"
-import romance from "../../assets/genre/romance.png"
+import romatic from "../../assets/genre/romantic.png";
+import tech from "../../assets/genre/tech.png";
+import romance from "../../assets/genre/romance.png";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -47,12 +48,17 @@ const Home = () => {
       {/* Genre */}
 
       <div>
-        <h1 className="text-[40px] text-[#FF630B] font-semibold my-10">Genre</h1>
+        <div className="flex justify-between items-center ">
+          <h1 className="text-[40px] text-[#FF630B] font-semibold my-10">
+            Genre
+          </h1>
+          <Link className="text-[#FF630B]" to="/">see all</Link>
+        </div>
         <div className="md:flex justify-center">
-          <GenreCard route='/' img={horor} text='Horor'></GenreCard>
-          <GenreCard route='/' img={romatic} text='Romantic'></GenreCard>
-          <GenreCard route='/' img={tech} text='Tech'></GenreCard>
-          <GenreCard route='/' img={romance} text='Romance'></GenreCard>
+          <GenreCard route="/" img={horor} text="Horor"></GenreCard>
+          <GenreCard route="/" img={romatic} text="Romantic"></GenreCard>
+          <GenreCard route="/" img={tech} text="Tech"></GenreCard>
+          <GenreCard route="/" img={romance} text="Romance"></GenreCard>
         </div>
       </div>
     </div>

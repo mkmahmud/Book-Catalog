@@ -1,11 +1,71 @@
-import React from 'react';
+import signUpImg from "../../assets/signUp.png";
+import google from "../../assets/google.png";
 
 const SignUp = () => {
-    return (
+  return (
+    <div className="md:flex items-center p-5">
+      <div className="w-full">
+        <img src={signUpImg} alt="" />
+      </div>
+      <div className="w-full">
         <div>
-            Sign up
+          <h2 className="text-[#FF630B] text-[30px] font-semibold">Sign Up</h2>
+          <p className="text-[#4F4F4F]">
+            Create your own universe of your own Books collection
+          </p>
+          <div>
+            <form>
+              <div className="form-controll my-4">
+                <p className="text-[#AA4207]">Name</p>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="outline-none border p-2 w-full rounded-xl"
+                  name=""
+                  id=""
+                />
+              </div>
+              <div className="form-controll my-4">
+                <p className="text-[#AA4207]">Email</p>
+                <input
+                  type="text"
+                  placeholder="Email"
+                  className="outline-none border p-2 w-full rounded-xl"
+                  name=""
+                  id=""
+                />
+              </div>
+              <div className="form-controll my-4">
+                <p className="text-[#AA4207]">Password</p>
+                <input
+                  type="text"
+                  placeholder="Password"
+                  className="outline-none border p-2 w-full rounded-xl"
+                  name=""
+                  id=""
+                />
+                <p>must be at least 8 characters.</p>
+              </div>
+
+              <button className="bg-[#FF630B] w-full  text-white py-2 px-4 rounded-md">
+                Create Account
+              </button>
+            </form>
+
+            <div className="flex items-center my-10">
+              <hr className="flex-grow border border-gray-300" />
+              <span className="mx-4 text-gray-500">or</span>
+              <hr className="flex-grow border border-gray-300" />
+            </div>
+
+            <button className="border border-[#FF630B] w-full  text-black py-2 px-4 rounded-md flex justify-center">
+              <img src={google} alt="" /> sign up with google
+            </button>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default SignUp;
