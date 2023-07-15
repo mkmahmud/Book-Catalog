@@ -1,31 +1,39 @@
 import logInImg from "../../assets/login.png";
 import google from "../../assets/google.png";
-import { useAppDispatch } from "../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { logInUser } from "../../redux/features/user/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Login = () => {
-
   const dispatch = useAppDispatch();
 
   const handelSubmit = (e: any) => {
     e.preventDefault();
-    const email = e.target.email.value
-    const password = e.target.password.value
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-    dispatch(logInUser({email: email, password: password}))
+    dispatch(logInUser({ email: email, password: password }));
+  };
 
-    console.log(email, password)
-  } 
+  const { isLoading, user } = useAppSelector((state) => state.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user.email && !isLoading) {
+      navigate("/");
+    }
+  }, [isLoading, user]);
 
   return (
     <div className="md:flex items-center p-5 justify-between">
       <div className="w-full md:w-2/6">
         <div>
-          <h2 className="text-mainBackground text-[30px] font-semibold">Log In</h2>
+          <h2 className="text-mainBackground text-[30px] font-semibold">
+            Log In
+          </h2>
           <p className="text-[#4F4F4F]">Welcome back to Chyra Library</p>
           <div>
             <form onSubmit={handelSubmit}>
-              
               <div className="form-controll my-4">
                 <p className="text-[#AA4207]">Email Address</p>
                 <input

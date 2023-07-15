@@ -14,12 +14,10 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
 
   const handelLogOut = () => {
-
     const auth = getAuth();
-    signOut(auth)
-      .then(() => {
-        dispatch(setUser(null))
-      })
+    signOut(auth).then(() => {
+      dispatch(setUser(null));
+    });
   };
 
   return (
@@ -27,9 +25,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 ">
           <div className="flex items-center">
-            <div className="flex-shrink-0 flex items-center">
-              <img className="h-8 w-8" src={logo} alt="Logo" />
-              <h2 className="font-bold text-[#FF630B] pl-2">Chyra Library</h2>
+            <div className="flex-shrink-0 ">
+              <Link to="/" className="flex items-center">
+                <img className="h-8 w-8" src={logo} alt="Logo" />
+                <h2 className="font-bold text-[#FF630B] pl-2">Chyra Library</h2>
+              </Link>
             </div>
           </div>
           <div className="ml-auto hidden md:block">
@@ -96,7 +96,7 @@ const Navbar = () => {
                         Profile
                       </button>
                       <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
-                        Settings
+                        <Link to="/add-book">Add new Book</Link>
                       </button>
                       <hr className="my-2" />
                       <button
@@ -180,7 +180,7 @@ const Navbar = () => {
                           Profile
                         </button>
                         <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
-                          Settings
+                          <Link to="/add-book">Add new Book</Link>
                         </button>
                         <hr className="my-2" />
                         <button
