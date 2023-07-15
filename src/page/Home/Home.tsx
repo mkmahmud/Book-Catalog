@@ -61,6 +61,11 @@ const Home = () => {
           <GenreCard route="/" img={romance} text="Romance"></GenreCard>
         </div>
       </div>
+
+      {/* Top 10 recent Books */}
+      <div>
+        <h2 className="text-[40px] text-mainBackground font-semibold my-10"> Top 10 recent added </h2>
+      </div>
     </div>
   );
 };

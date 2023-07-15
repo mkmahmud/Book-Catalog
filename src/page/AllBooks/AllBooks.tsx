@@ -1,6 +1,9 @@
 import BookCard from "../../components/BookCard/BookCard";
+import { useGetAllbooksQuery } from "../../redux/features/books/bookApi";
 
 const AllBooks = () => {
+  const { data, isLoading } = useGetAllbooksQuery(undefined);
+
   return (
     <div>
       <div className="my-10">
@@ -9,11 +12,9 @@ const AllBooks = () => {
         </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 md:gap-4">
-        <BookCard></BookCard>
-        <BookCard></BookCard>
-        <BookCard></BookCard>
-        <BookCard></BookCard>
-        <BookCard></BookCard>
+        {isLoading && <h2 className="text-red-500">loading</h2>}
+
+        {data && data.data.data.map((book: any) => <BookCard key={book._id} data={book}></BookCard>)}
       </div>
     </div>
   );
