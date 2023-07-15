@@ -2,12 +2,25 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useState } from "react";
 import cart from "../../assets/icons/cart.png";
-import { useAppSelector } from "../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { getAuth, signOut } from "firebase/auth";
+import { setUser } from "../../redux/features/user/userSlice";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);  
+  const [isOpen, setIsOpen] = useState(false);
   const { user } = useAppSelector((state) => state.user);
+
+  const dispatch = useAppDispatch();
+
+  const handelLogOut = () => {
+
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        dispatch(setUser(null))
+      })
+  };
 
   return (
     <nav className="relative">
@@ -86,7 +99,10 @@ const Navbar = () => {
                         Settings
                       </button>
                       <hr className="my-2" />
-                      <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
+                      <button
+                        onClick={handelLogOut}
+                        className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left"
+                      >
                         Sign Out
                       </button>
                     </div>
@@ -167,7 +183,10 @@ const Navbar = () => {
                           Settings
                         </button>
                         <hr className="my-2" />
-                        <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
+                        <button
+                          onClick={handelLogOut}
+                          className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left"
+                        >
                           Sign Out
                         </button>
                       </div>
