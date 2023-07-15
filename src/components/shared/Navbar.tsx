@@ -5,7 +5,8 @@ import cart from "../../assets/icons/cart.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [logged, setLogged] = useState(true);
   return (
     <nav className="relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,7 +21,9 @@ const Navbar = () => {
             <div className="md:flex items-center space-x-4">
               <ul className="flex ">
                 <li className="text-gray-300 text-[#FF630B] px-3 py-2 rounded-md text-sm font-semibold">
-                  <Link className="text-black" to="/">Home</Link>
+                  <Link className="text-black" to="/">
+                    Home
+                  </Link>
                 </li>
                 <li className="text-gray-300 text-black px-3 py-2 rounded-md text-sm font-semibold">
                   <Link to="/about" className="hover:text-[#FF630B] text-black">
@@ -28,17 +31,26 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="text-gray-300 text-black px-3 py-2 rounded-md text-sm font-semibold">
-                  <Link to="/all-books" className="hover:text-[#FF630B] text-black">
-                    All Books 
+                  <Link
+                    to="/all-books"
+                    className="hover:text-[#FF630B] text-black"
+                  >
+                    All Books
                   </Link>
                 </li>
                 <li className="text-gray-300 text-black px-3 py-2 rounded-md text-sm font-semibold">
-                  <Link to="/catalog" className="hover:text-[#FF630B]  text-black">
+                  <Link
+                    to="/catalog"
+                    className="hover:text-[#FF630B]  text-black"
+                  >
                     Library catalog
                   </Link>
                 </li>
                 <li className="text-gray-300 text-black px-3 py-2 rounded-md text-sm font-semibold">
-                  <Link to="/contact" className="hover:text-[#FF630B] text-black">
+                  <Link
+                    to="/contact"
+                    className="hover:text-[#FF630B] text-black"
+                  >
                     Contact Us
                   </Link>
                 </li>
@@ -48,14 +60,46 @@ const Navbar = () => {
                 <span className="sr-only">View cart</span>
                 <img src={cart} alt="" />
               </button>
-              <ul className="flex">
-                <li className="ml-3 text-[#898989]  hover:text-black px-3 py-2 rounded-md text-sm font-medium">
-                  <Link to="/login"> Log In</Link>
-                </li>
-                <li className="ml-3 bg-[#FF630B]  text-white px-3 py-2 rounded-md text-sm font-medium">
-                  <Link to="/signup">Sign Up</Link>
-                </li>
-              </ul>
+              {logged ? (
+                <div className="relative">
+                  <button
+                    className="flex items-center focus:outline-none"
+                    onClick={() => {
+                      setIsOpen(!isOpen);
+                    }}
+                  >
+                    <img
+                      className="w-8 h-8 rounded-full"
+                      src={logo}
+                      alt="Profile"
+                    />
+                  </button>
+
+                  {isOpen && (
+                    <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
+                      <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
+                        Profile
+                      </button>
+                      <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
+                        Settings
+                      </button>
+                      <hr className="my-2" />
+                      <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
+                        Sign Out
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <ul className="flex">
+                  <li className="ml-3 text-[#898989]  hover:text-black px-3 py-2 rounded-md text-sm font-medium">
+                    <Link to="/login"> Log In</Link>
+                  </li>
+                  <li className="ml-3 bg-[#FF630B]  text-white px-3 py-2 rounded-md text-sm font-medium">
+                    <Link to="/signup">Sign Up</Link>
+                  </li>
+                </ul>
+              )}
             </div>
           </div>
           <div className="mobileMenu md:hidden">
@@ -97,12 +141,47 @@ const Navbar = () => {
                     Contact Us
                   </Link>
                 </li>
-                <li className="ml-3 text-[#898989]  hover:text-black px-3 py-2 rounded-md text-sm font-medium">
-                  <Link to="/login"> Log In</Link>
-                </li>
-                <li className="ml-3 bg-[#FF630B]  text-white px-3 py-2 rounded-md text-sm font-medium">
-                  <Link to="/signup">Sign Up</Link>
-                </li>
+                {logged && (
+                  <div className="relative">
+                    <button
+                      className="flex items-center focus:outline-none"
+                      onClick={() => {
+                        setIsOpen(!isOpen);
+                      }}
+                    >
+                      <img
+                        className="w-8 h-8 rounded-full"
+                        src={logo}
+                        alt="Profile"
+                      />
+                    </button>
+
+                    {isOpen && (
+                      <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
+                        <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
+                          Profile
+                        </button>
+                        <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
+                          Settings
+                        </button>
+                        <hr className="my-2" />
+                        <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
+                          Sign Out
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+                {!logged && (
+                  <li className="ml-3 text-[#898989]  hover:text-black px-3 py-2 rounded-md text-sm font-medium">
+                    <Link to="/login"> Log In</Link>
+                  </li>
+                )}
+                {!logged && (
+                  <li className="ml-3 bg-[#FF630B]  text-white px-3 py-2 rounded-md text-sm font-medium">
+                    <Link to="/signup">Sign Up</Link>
+                  </li>
+                )}
                 <li className="ml-3 text-[#898989]  hover:text-black px-3 py-2 rounded-md text-sm font-medium">
                   <button className=" p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span className="sr-only">View cart</span>
