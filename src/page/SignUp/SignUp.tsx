@@ -1,7 +1,24 @@
 import signUpImg from "../../assets/signUp.png";
 import google from "../../assets/google.png";
+import { useAppDispatch } from "../../redux/hook";
+import { createUser } from "../../redux/features/user/userSlice";
+
+
+
 
 const SignUp = () => {
+
+  const dispatch = useAppDispatch()
+
+  const handelSubmit = (e: any) => {
+    e.preventDefault();
+    const email = e.target.email.value
+    const password = e.target.password.value
+
+    dispatch(createUser({email: email, password: password}))
+
+    console.log(email, password)
+  } 
   return (
     <div className="md:flex items-center p-5 justify-between">
       <div className="w-full md:w-4/6">
@@ -9,30 +26,22 @@ const SignUp = () => {
       </div>
       <div className="w-full md:w-2/6">
         <div>
-          <h2 className="text-mainBackground text-[30px] font-semibold">Sign Up</h2>
+          <h2 className="text-mainBackground text-[30px] font-semibold">
+            Sign Up
+          </h2>
           <p className="text-[#4F4F4F]">
             Create your own universe of your own Books collection
           </p>
           <div>
-            <form>
-              <div className="form-controll my-4">
-                <p className="text-[#AA4207]">Name</p>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="outline-none border p-2 w-full rounded-xl"
-                  name=""
-                  id=""
-                />
-              </div>
+            <form onSubmit={handelSubmit}>
               <div className="form-controll my-4">
                 <p className="text-[#AA4207]">Email</p>
                 <input
                   type="text"
                   placeholder="Email"
                   className="outline-none border p-2 w-full rounded-xl"
-                  name=""
-                  id=""
+                  name="email"
+                  id="email"
                 />
               </div>
               <div className="form-controll my-4">
@@ -41,13 +50,13 @@ const SignUp = () => {
                   type="text"
                   placeholder="Password"
                   className="outline-none border p-2 w-full rounded-xl"
-                  name=""
-                  id=""
+                  name="password"
+                  id="password"
                 />
                 <p>must be at least 8 characters.</p>
               </div>
 
-              <button className="bg-mainBackground w-full  text-white py-2 px-4 rounded-md">
+              <button type="submit" className="bg-mainBackground w-full  text-white py-2 px-4 rounded-md">
                 Create Account
               </button>
             </form>

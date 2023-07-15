@@ -1,7 +1,22 @@
 import logInImg from "../../assets/login.png";
 import google from "../../assets/google.png";
+import { useAppDispatch } from "../../redux/hook";
+import { logInUser } from "../../redux/features/user/userSlice";
 
 const Login = () => {
+
+  const dispatch = useAppDispatch();
+
+  const handelSubmit = (e: any) => {
+    e.preventDefault();
+    const email = e.target.email.value
+    const password = e.target.password.value
+
+    dispatch(logInUser({email: email, password: password}))
+
+    console.log(email, password)
+  } 
+
   return (
     <div className="md:flex items-center p-5 justify-between">
       <div className="w-full md:w-2/6">
@@ -9,7 +24,7 @@ const Login = () => {
           <h2 className="text-mainBackground text-[30px] font-semibold">Log In</h2>
           <p className="text-[#4F4F4F]">Welcome back to Chyra Library</p>
           <div>
-            <form>
+            <form onSubmit={handelSubmit}>
               
               <div className="form-controll my-4">
                 <p className="text-[#AA4207]">Email Address</p>
@@ -17,8 +32,8 @@ const Login = () => {
                   type="text"
                   placeholder="Email"
                   className="outline-none border p-2 w-full rounded-xl"
-                  name=""
-                  id=""
+                  name="email"
+                  id="email"
                 />
               </div>
               <div className="form-controll my-4">
@@ -27,8 +42,8 @@ const Login = () => {
                   type="text"
                   placeholder="Password"
                   className="outline-none border p-2 w-full rounded-xl"
-                  name=""
-                  id=""
+                  name="password"
+                  id="password"
                 />
                 <p>must be at least 8 characters.</p>
               </div>
