@@ -5,8 +5,12 @@ import romatic from "../../assets/genre/romantic.png";
 import tech from "../../assets/genre/tech.png";
 import romance from "../../assets/genre/romance.png";
 import { Link } from "react-router-dom";
+import BookCard from "../../components/BookCard/BookCard";
+import { useGetTopTenBookQuery } from "../../redux/features/books/bookApi";
 
 const Home = () => {
+  const { data, isLoading } = useGetTopTenBookQuery(undefined);
+
   return (
     <div>
       <div className="md:flex justify-around items-center my-40 ">
@@ -52,7 +56,9 @@ const Home = () => {
           <h1 className="text-[40px] text-mainBackground font-semibold my-10">
             Genre
           </h1>
-          <Link className="text-mainBackground" to="/">see all</Link>
+          <Link className="text-mainBackground" to="/">
+            see all
+          </Link>
         </div>
         <div className="md:flex justify-center">
           <GenreCard route="/" img={horor} text="Horor"></GenreCard>
@@ -64,7 +70,19 @@ const Home = () => {
 
       {/* Top 10 recent Books */}
       <div>
-        <h2 className="text-[40px] text-mainBackground font-semibold my-10"> Top 10 recent added </h2>
+        <h2 className="text-[40px] text-mainBackground font-semibold my-10">
+          {" "}
+          Top 10 recent added{" "}
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-5 md:gap-2">
+          {isLoading && <h2 className="text-red-500">loading</h2>}
+
+          {data &&
+            data.data.data.map((book: any) => (
+              <BookCard key={book._id} data={book}></BookCard>
+            ))}
+        </div>
       </div>
     </div>
   );
