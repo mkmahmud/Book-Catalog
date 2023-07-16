@@ -2,24 +2,20 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../../redux/hook";
 import { useAddToWishListMutation } from "../../redux/features/wishList/wishListApi";
 
-
 const BookCard = ({ data }: any) => {
   const { _id, thumbnail, title, user, shortTitle } = data;
 
-  const { user : loggedUser } = useAppSelector((state) => state.user);
-  const [addToWishList, options] = useAddToWishListMutation();
-
+  const { user: loggedUser } = useAppSelector((state) => state.user);
+  const [addToWishList] = useAddToWishListMutation();
 
   const handelWishlist = (userEmail: any, book: string | null) => {
-
     const wishlistData = {
       userEmail,
-      book
-    }
+      book,
+    };
 
-    addToWishList(wishlistData)
-      
-  }
+    addToWishList(wishlistData);
+  };
 
   return (
     <div className=" p-2">
@@ -51,8 +47,12 @@ const BookCard = ({ data }: any) => {
         </div>
       </Link>
       <div className="my-4">
-        <button onClick={() => {handelWishlist(  loggedUser.email, _id)}} className="outline outline-mainBackground text-mainBackground outline-1   py-2 px-6  rounded-md">
-          
+        <button
+          onClick={() => {
+            handelWishlist(loggedUser.email, _id);
+          }}
+          className="outline outline-mainBackground text-mainBackground outline-1   py-2 px-6  rounded-md"
+        >
           Add to Wish List
         </button>
       </div>
