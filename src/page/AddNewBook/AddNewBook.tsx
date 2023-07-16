@@ -1,12 +1,10 @@
-import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import {  useAppSelector } from "../../redux/hook";
 import signUpImg from "../../assets/signUp.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useCreateBookMutation } from "../../redux/features/books/bookApi";
 import toast from "react-hot-toast";
 const AddNewBook = () => {
-    
-
   const { isLoading, user } = useAppSelector((state) => state.user);
 
   const navigate = useNavigate();
@@ -48,10 +46,14 @@ const AddNewBook = () => {
     };
 
     createBook(bookData);
-    toast.success('Book added Successfully !')
-
-    
   };
+
+  useEffect(() => {
+    if (options?.data) {
+      toast.success("Book added Successfully !");
+    }
+  }, [options]);
+
   return (
     <div className="md:flex items-center p-5 justify-between">
       <div className="w-full md:w-2/6">

@@ -1,8 +1,21 @@
+import { useLocation, useParams } from "react-router-dom";
 import BookCard from "../../components/BookCard/BookCard";
 import { useGetAllbooksQuery } from "../../redux/features/books/bookApi";
 
 const AllBooks = () => {
-  const { data, isLoading } = useGetAllbooksQuery(undefined);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchText = queryParams.get("serachText");
+
+
+  let search = ''
+
+  if(searchText){
+    search = searchText
+  }
+
+  const { data, isLoading } = useGetAllbooksQuery(search, {refetchOnMountOrArgChange: true});
+
 
   return (
     <div>
@@ -15,7 +28,10 @@ const AllBooks = () => {
         {isLoading && <h2 className="text-red-500">loading</h2>}
 
         {data && data.data.data.map((book: any) => <BookCard key={book._id} data={book}></BookCard>)}
+
+  
       </div>
+        <h2  className="text-xl text-red-500 my-10">{data && data.data.data.length === 0 ? `No Books Found by '${searchText}' this text ` : ''}</h2>
     </div>
   );
 };

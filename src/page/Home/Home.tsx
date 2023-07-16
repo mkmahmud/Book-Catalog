@@ -4,12 +4,20 @@ import GenreCard from "../../components/genreCard/GenreCard";
 import romatic from "../../assets/genre/romantic.png";
 import tech from "../../assets/genre/tech.png";
 import romance from "../../assets/genre/romance.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BookCard from "../../components/BookCard/BookCard";
 import { useGetTopTenBookQuery } from "../../redux/features/books/bookApi";
 
 const Home = () => {
   const { data, isLoading } = useGetTopTenBookQuery(undefined);
+
+  const navigate = useNavigate()
+  const handelSumit = (e: any) => {
+    e.preventDefault();
+    const searchWords = e.target.searchText.value;
+    navigate(`/all-books/?serachText=${searchWords}`)
+    
+  };
 
   return (
     <div>
@@ -26,16 +34,23 @@ const Home = () => {
             Browse from the largest collection of ebooks <br /> Read stories
             from anywhere, at anytime.
           </p>
-          <div className="flex items-center justify-between border-2 p-2 rounded-xl my-10 ">
-            <input
-              type="text"
-              placeholder="Search by book title, author name"
-              className="py-2 px-4 rounded-l-md focus:outline-none focus:ring-0 w-full "
-            />
-            <button className="bg-mainBackground  text-white py-2 px-4 rounded-md">
-              Search
-            </button>
-          </div>
+          <form onSubmit={handelSumit}>
+            <div className="flex items-center justify-between border-2 p-2 rounded-xl my-10 ">
+              <input
+                type="text"
+                placeholder="Search by book title, author name"
+                className="py-2 px-4 rounded-l-md focus:outline-none focus:ring-0 w-full "
+                id="searchText"
+                name="searchText"
+              />
+              <button
+                type="submit"
+                className="bg-mainBackground  text-white py-2 px-4 rounded-md"
+              >
+                Search
+              </button>
+            </div>
+          </form>
         </div>
         <div className="w-full flex justify-center md:mx-10">
           <div className="relative ">
