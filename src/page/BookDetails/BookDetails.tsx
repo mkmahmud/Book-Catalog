@@ -1,16 +1,24 @@
 import FilledButton from "../../components/Buttons/FilledButton";
-import OutlinedButton from "../../components/Buttons/OutlinedButton";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import u1 from "../../assets/user/u2.png";
 import u2 from "../../assets/user/u3.png";
-import { useParams } from "react-router-dom";
-import { useGetSingelBookQuery } from "../../redux/features/books/bookApi";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  useDeleteBookMutation,
+  useGetSingelBookQuery,
+} from "../../redux/features/books/bookApi";
+import { toast } from "react-hot-toast";
+import { useAppSelector } from "../../redux/hook";
 
 const BookDetails = () => {
-  const { id } = useParams();
+  const { user: loggedInUser } = useAppSelector((state) => state.user);
 
+  const { id } = useParams();
+  const [deleteBook] = useDeleteBookMutation();
   const { data, isLoading } = useGetSingelBookQuery(id);
   const book = data?.data; // Retrieve the book object from the data
+
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <p>Loading...</p>; // Add a loading state while data is being fetched
@@ -36,7 +44,18 @@ const BookDetails = () => {
     reviews,
   } = book;
 
-  
+  const handelDelete = (id: any) => {
+    if (window.confirm("Are you sure you want to delete this book?")) {
+      deleteBook(id)
+        .unwrap()
+        .then(() => {
+          // Handle successful deletion
+          toast.success("Book deleted successfully!");
+          navigate("/all-books");
+        });
+    }
+  };
+
   return (
     <div>
       <div className="md:flex my-10 items-center">
@@ -48,10 +67,22 @@ const BookDetails = () => {
               alt=""
             />
           </div>
-          <div className="flex justify-around my-5">
-            <FilledButton path={`/edit-book/${_id}`} content="Edit"></FilledButton>
-            <OutlinedButton path="/" content="Delete"></OutlinedButton>
-          </div>
+          {loggedInUser?.email && (
+            <div className="flex justify-around my-5">
+              <FilledButton
+                path={`/edit-book/${_id}`}
+                content="Edit"
+              ></FilledButton>
+              <button
+                onClick={() => {
+                  handelDelete(_id);
+                }}
+                className="outline outline-mainBackground text-mainBackground outline-1   py-2 px-6  rounded-md"
+              >
+                Delete
+              </button>
+            </div>
+          )}
         </div>
         <div className="w-full md:w-4/6 mx-2 bg-[#F4F4F4] px-4 py-2">
           <h2 className="text-3xl font-semibold py-2">{title}</h2>
@@ -88,8 +119,7 @@ const BookDetails = () => {
                 <span className="font-semibold">PUBLISHER:</span> {publisher}
               </li>
               <li>
-                <span className="font-semibold">PUBLISHED:</span>{" "}
-                {firstPublish}
+                <span className="font-semibold">PUBLISHED:</span> {firstPublish}
               </li>
               <li>
                 <span className="font-semibold">ISBN:</span> {isbn}
@@ -125,8 +155,9 @@ const BookDetails = () => {
           </form>
         </div>
         <div>
-          {reviews.map((review: any) => (
+          {reviews.map((review: any, index: number) => (
             <ReviewCard
+              key={index} // Use the index as the key (not recommended if the order of items may change)
               img={u1}
               name={review.author}
               review={review.comment}
