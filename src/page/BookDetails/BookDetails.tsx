@@ -21,6 +21,7 @@ const BookDetails = () => {
   }
 
   const {
+    _id,
     thumbnail,
     title,
     user,
@@ -48,7 +49,7 @@ const BookDetails = () => {
             />
           </div>
           <div className="flex justify-around my-5">
-            <FilledButton path="/" content="Edit"></FilledButton>
+            <FilledButton path={`/edit-book/${_id}`} content="Edit"></FilledButton>
             <OutlinedButton path="/" content="Delete"></OutlinedButton>
           </div>
         </div>
