@@ -10,6 +10,9 @@ const bookApi = api.injectEndpoints({
       query: () => "/book/?page=1&limit=10&sortOrder=desc",
       providesTags: ["books"],
     }),
+    getSingelBook: builder.query({
+      query: (id) => `/book/${id}`,
+    }),
     createBook: builder.mutation({
       query: (data) => ({
         url: "/book/create-book",
@@ -25,4 +28,5 @@ export const {
   useGetAllbooksQuery,
   useGetTopTenBookQuery,
   useCreateBookMutation,
+  useGetSingelBookQuery,
 } = bookApi;

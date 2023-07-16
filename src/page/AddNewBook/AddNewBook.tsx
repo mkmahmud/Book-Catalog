@@ -27,6 +27,7 @@ const AddNewBook = () => {
     const page = e.target.page.value;
     const genre = e.target.genre.value;
     const author = e.target.Author.value;
+    const language = e.target.Language.value;
 
     const bookData = {
       title,
@@ -38,6 +39,7 @@ const AddNewBook = () => {
       page,
       genre,
       author,
+      language,
       user: {
         profileImg:
           "https://1fid.com/wp-content/uploads/2022/06/girl-profile-picture-1024x1024.jpg",
@@ -132,6 +134,17 @@ const AddNewBook = () => {
                   className="outline-none border p-2 w-full rounded-xl"
                   name="Author"
                   id="Author"
+                  required
+                />
+              </div>
+              <div className="form-controll my-4">
+                <p className="text-[#AA4207]">Language</p>
+                <input
+                  type="text"
+                  placeholder="Language"
+                  className="outline-none border p-2 w-full rounded-xl"
+                  name="Language"
+                  id="Language"
                   required
                 />
               </div>
