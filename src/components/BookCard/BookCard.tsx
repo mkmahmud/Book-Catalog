@@ -4,9 +4,10 @@ import OutlinedButton from "../Buttons/OutlinedButton";
 const BookCard = ({data}: any) => {
   
 
-  const {thumbnail, title, user, shortTitle} = data
+  const { _id, thumbnail, title, user, shortTitle} = data
 
   return (
+    <Link to={`/book-details/${_id}`}>
     <div className=" p-2">
       <div className="p-2 border border-4">
         <img className="block mx-auto" src={thumbnail} alt="" />
@@ -35,6 +36,7 @@ const BookCard = ({data}: any) => {
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 
