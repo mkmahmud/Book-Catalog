@@ -1,4 +1,4 @@
-import { createBrowserRouter, useNavigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Home from "../page/Home/Home";
 import App from "../App";
 import SignUp from "../page/SignUp/SignUp";
@@ -7,6 +7,7 @@ import AllBooks from "../page/AllBooks/AllBooks";
 import BookDetails from "../page/BookDetails/BookDetails";
 import AddNewBook from "../page/AddNewBook/AddNewBook";
 import EditBooks from "../page/EditBook/EditBook";
+import Wishlists from "../page/Wishlists/Wishlists";
 
 
 
@@ -30,6 +31,10 @@ const routes = createBrowserRouter([
       {
         path: "/add-book",
         element: <AddNewBook />,
+      },
+      {
+        path: "/wishlist",
+        element: <Wishlists />,
       },
       {
         path: "/edit-book/:id",

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useState } from "react";
-import cart from "../../assets/icons/cart.png";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { getAuth, signOut } from "firebase/auth";
 import { setUser } from "../../redux/features/user/userSlice";
@@ -71,10 +70,6 @@ const Navbar = () => {
                 </li>
               </ul>
 
-              <button className=" p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <span className="sr-only">View cart</span>
-                <img src={cart} alt="" />
-              </button>
               {user.email ? (
                 <div className="relative">
                   <button
@@ -93,7 +88,7 @@ const Navbar = () => {
                   {isOpen && (
                     <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
                       <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
-                        Profile
+                        <Link to="/wishlist">WishList</Link>
                       </button>
                       <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
                         <Link to="/add-book">Add new Book</Link>
@@ -177,7 +172,7 @@ const Navbar = () => {
                     {isOpen && (
                       <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
                         <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
-                          Profile
+                          <Link to="/wishlist">WishList</Link>
                         </button>
                         <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 w-full text-left">
                           <Link to="/add-book">Add new Book</Link>
@@ -203,12 +198,6 @@ const Navbar = () => {
                     <Link to="/signup">Sign Up</Link>
                   </li>
                 )}
-                <li className="ml-3 text-[#898989]  hover:text-black px-3 py-2 rounded-md text-sm font-medium">
-                  <button className=" p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                    <span className="sr-only">View cart</span>
-                    <img src={cart} alt="" />
-                  </button>
-                </li>
               </ul>
             )}
           </div>
