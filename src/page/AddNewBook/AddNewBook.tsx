@@ -1,8 +1,22 @@
-import { useAppDispatch } from "../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import signUpImg from "../../assets/signUp.png";
-
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useCreateBookMutation } from "../../redux/features/books/bookApi";
+import toast from "react-hot-toast";
 const AddNewBook = () => {
-  const dispatch = useAppDispatch();
+    
+
+  const { isLoading, user } = useAppSelector((state) => state.user);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user.email) {
+      navigate("/");
+    }
+  }, [isLoading, user]);
+
+  const [createBook, options] = useCreateBookMutation();
 
   const handelSubmit = (e: any) => {
     e.preventDefault();
@@ -13,20 +27,28 @@ const AddNewBook = () => {
     const firstPublish = e.target.firstPublish.value;
     const isbn = e.target.isbn.value;
     const page = e.target.page.value;
-    const genre = e.target.genre.value; 
+    const genre = e.target.genre.value;
+    const author = e.target.Author.value;
 
     const bookData = {
-        title,
-        Thumbnail,
-        shortTitle,
-        publisher,
-        firstPublish,
-        isbn,
-        page,
-        genre
-    }
-    
-    console.log(bookData)
+      title,
+      thumbnail: Thumbnail,
+      shortTitle,
+      publisher,
+      firstPublish,
+      isbn,
+      page,
+      genre,
+      author,
+      user: {
+        profileImg:
+          "https://1fid.com/wp-content/uploads/2022/06/girl-profile-picture-1024x1024.jpg",
+        name: user.email,
+      },
+    };
+
+    createBook(bookData);
+    toast.success('Book added Successfully !')
 
     
   };
@@ -90,13 +112,24 @@ const AddNewBook = () => {
                 />
               </div>
               <div className="form-controll my-4">
-                <p className="text-[#AA4207]">First Publish</p>
+                <p className="text-[#AA4207]">Publish Date</p>
                 <input
                   type="text"
-                  placeholder="First Publish"
+                  placeholder="Publish Date"
                   className="outline-none border p-2 w-full rounded-xl"
                   name="firstPublish"
                   id="firstPublish"
+                  required
+                />
+              </div>
+              <div className="form-controll my-4">
+                <p className="text-[#AA4207]">Author</p>
+                <input
+                  type="text"
+                  placeholder="Author"
+                  className="outline-none border p-2 w-full rounded-xl"
+                  name="Author"
+                  id="Author"
                   required
                 />
               </div>

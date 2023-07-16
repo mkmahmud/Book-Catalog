@@ -21,7 +21,7 @@ const Login = () => {
   useEffect(() => {
     if (user.email && !isLoading) {
       navigate("/");
-    }
+    } 
   }, [isLoading, user]);
 
   return (

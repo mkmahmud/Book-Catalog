@@ -26,6 +26,7 @@ function App() {
       style={{ fontFamily: ` 'Poppins', sans-serif` }}
     >
       <Main />
+      
     </div>
   );
 }

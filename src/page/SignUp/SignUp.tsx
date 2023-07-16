@@ -1,24 +1,29 @@
 import signUpImg from "../../assets/signUp.png";
 import google from "../../assets/google.png";
-import { useAppDispatch } from "../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { createUser } from "../../redux/features/user/userSlice";
-
-
-
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const SignUp = () => {
-
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const handelSubmit = (e: any) => {
     e.preventDefault();
-    const email = e.target.email.value
-    const password = e.target.password.value
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-    dispatch(createUser({email: email, password: password}))
+    dispatch(createUser({ email: email, password: password }));
+  };
 
-    console.log(email, password)
-  } 
+  const { isLoading, user } = useAppSelector((state) => state.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user.email && !isLoading) {
+      navigate("/");
+    }
+  }, [isLoading, user]);
+
   return (
     <div className="md:flex items-center p-5 justify-between">
       <div className="w-full md:w-4/6">
@@ -56,7 +61,10 @@ const SignUp = () => {
                 <p>must be at least 8 characters.</p>
               </div>
 
-              <button type="submit" className="bg-mainBackground w-full  text-white py-2 px-4 rounded-md">
+              <button
+                type="submit"
+                className="bg-mainBackground w-full  text-white py-2 px-4 rounded-md"
+              >
                 Create Account
               </button>
             </form>
